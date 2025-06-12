@@ -1,3 +1,8 @@
+//tp3
+//comision 1
+//mateo delgadino
+//obra 24
+//https://youtu.be/4MePGvEmImQ
 PImage foto;
 color c1 = color(128);
 color c2 = color(0);
@@ -5,14 +10,25 @@ int tamañooriginal = 40;
 int tamañocuadrado = tamañooriginal;
 boolean cambiarcolores = false;
 
-//tp3
-//comision 1
-//mateo delgadino
-//obra 24
 void setup(){ 
   size(800,400);
   foto=loadImage("foto.jpg");
 }
+void coloresrandom() {
+   c1 = color(random(255), random(255), random(255));
+   c2 = color(random(255), random(255), random(255));
+}
+ int calculartamaño(int tamaño) {
+ return tamaño * 2;
+}  
+  void cambiartamaño(int nuevotamaño) {
+    tamañocuadrado = nuevotamaño;
+    if (tamañocuadrado > 100) {
+      tamañocuadrado = 100;
+    } else if ( tamañocuadrado < 10) {
+      tamañocuadrado = 10;
+    }
+  }
 void draw(){
   background(0);
 
@@ -24,8 +40,7 @@ void draw(){
      int x = width / 2 + columna * tamañocuadrado + desplazamiento;
      int y = fila * tamañocuadrado;
      if(cambiarcolores) {
-       c1 = color(random(255), random(255), random(255));
-       c2 = color(random(255), random(255), random(255));
+       coloresrandom();
        cambiarcolores = false;
      }
      fill(((fila + columna)% 2 == 0) ? c1: c2);
@@ -43,10 +58,17 @@ void keyPressed(){
    c2 = color(0);
    tamañocuadrado = tamañooriginal;
  }else if (key == 'g') {
-   tamañocuadrado += 5;
+   
+cambiartamaño ( tamañocuadrado + 5);
  }else if (key == 'f') {
- tamañocuadrado -=5;
- tamañocuadrado = constrain(tamañocuadrado, 10,100);
+cambiartamaño (tamañocuadrado -5);
+ if (tamañocuadrado < 10) {
+   }
+ }
+  if (tamañocuadrado > 100) {
+    tamañocuadrado = 100;
+ } else if (tamañocuadrado < 10) {
+   tamañocuadrado = 10;
  }
 }
-   
+  
